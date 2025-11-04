@@ -19,8 +19,8 @@
         
         #game-container {
             position: relative;
-            width: 900px;
-            height: 600px;
+            width: 1000px;
+            height: 700px;
             border: 4px solid #8B4513;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -29,6 +29,8 @@
         
         #game-canvas {
             background-color: transparent;
+            width: 100%;
+            height: 100%;
         }
         
         #background {
@@ -38,6 +40,7 @@
             width: 100%;
             height: 100%;
             z-index: 1;
+            object-fit: cover;
         }
         
         #game-content {
@@ -51,40 +54,40 @@
         
         #lives {
             position: absolute;
-            top: 10px;
-            right: 20px;
+            top: 15px;
+            right: 25px;
             color: white;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             z-index: 10;
             background-color: rgba(0, 0, 0, 0.5);
-            padding: 5px 10px;
+            padding: 8px 15px;
             border-radius: 10px;
         }
         
         #hearts {
             position: absolute;
-            top: 50px;
-            right: 20px;
+            top: 60px;
+            right: 25px;
             display: flex;
-            gap: 5px;
+            gap: 8px;
             z-index: 10;
         }
         
         .heart {
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             background-color: #FF0000;
             clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 80%, 18% 100%, 0% 35%);
         }
         
         #tank-container {
             position: absolute;
-            top: 100px;
-            right: 20px;
-            width: 80px;
-            height: 200px;
+            top: 120px;
+            right: 25px;
+            width: 90px;
+            height: 220px;
             background-color: rgba(85, 85, 85, 0.8);
             border: 3px solid #333;
             border-radius: 5px;
@@ -103,11 +106,11 @@
         
         #tank-label {
             position: absolute;
-            top: -30px;
+            top: -35px;
             width: 100%;
             text-align: center;
             color: white;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
         }
@@ -125,6 +128,8 @@
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
             z-index: 20;
+            padding: 20px;
+            box-sizing: border-box;
         }
         
         #win-screen, #game-over {
@@ -132,48 +137,51 @@
         }
         
         h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 52px;
+            margin-bottom: 25px;
             text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
             color: #FFD700;
+            text-align: center;
         }
         
         p {
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 26px;
+            margin-bottom: 15px;
             text-align: center;
-            max-width: 80%;
+            max-width: 90%;
+            line-height: 1.4;
         }
         
         .hold-keys-info {
-            font-size: 28px;
+            font-size: 30px;
             color: #FFA500;
             font-weight: bold;
-            margin: 25px 0;
+            margin: 20px 0;
             text-align: center;
-            max-width: 80%;
+            max-width: 90%;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            line-height: 1.3;
         }
         
         .oil-spill {
-            font-size: 36px;
+            font-size: 40px;
             color: #FF4444;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
         
         button {
-            padding: 15px 30px;
-            font-size: 20px;
+            padding: 18px 35px;
+            font-size: 24px;
             background-color: #FF8C00;
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             transition: background-color 0.3s;
-            box-shadow: 0 4px 0 #CC7000;
-            margin-top: 20px;
+            box-shadow: 0 5px 0 #CC7000;
+            margin-top: 30px;
         }
         
         button:hover {
@@ -181,14 +189,14 @@
         }
         
         button:active {
-            transform: translateY(4px);
+            transform: translateY(5px);
             box-shadow: none;
         }
         
         .pipe {
             position: absolute;
-            width: 80px;
-            height: 120px;
+            width: 90px;
+            height: 140px;
             background-color: #696969;
             border: 3px solid #4F4F4F;
             border-radius: 5px;
@@ -199,12 +207,12 @@
         .pipe::after {
             content: '';
             position: absolute;
-            width: 100px;
-            height: 25px;
+            width: 110px;
+            height: 30px;
             background-color: #696969;
             border: 3px solid #4F4F4F;
             border-radius: 5px;
-            top: 120px;
+            top: 140px;
             left: -10px;
         }
     </style>
@@ -214,7 +222,7 @@
         <img id="background" src="https://github.com/ArsikZhiga/road/blob/main/photo_2025-11-04_12-20-35.jpg?raw=true" alt="Фон игры">
         
         <div id="game-content">
-            <canvas id="game-canvas" width="900" height="600"></canvas>
+            <canvas id="game-canvas" width="1000" height="700"></canvas>
             
             <div id="lives">Жизни:</div>
             <div id="hearts">
@@ -281,9 +289,9 @@
 
         // Позиции труб (три трубы)
         const pipes = [
-            { x: 250, y: 0 },
-            { x: 450, y: 0 },
-            { x: 650, y: 0 }
+            { x: 300, y: 0 },
+            { x: 500, y: 0 },
+            { x: 700, y: 0 }
         ];
 
         // Капли нефти
@@ -291,10 +299,10 @@
 
         // Нефтевоз
         const tanker = {
-            x: canvas.width / 2 - 75,
-            y: canvas.height - 120,
-            width: 150,
-            height: 90,
+            x: canvas.width / 2 - 85,
+            y: canvas.height - 140,
+            width: 170,
+            height: 100,
             speed: 15  // Высокая скорость перемещения
         };
 
@@ -316,10 +324,10 @@
         function createOilDrop() {
             const randomPipe = pipes[Math.floor(Math.random() * pipes.length)];
             oilDrops.push({
-                x: randomPipe.x + 35,
-                y: randomPipe.y + 120,
-                width: 25,
-                height: 35,
+                x: randomPipe.x + 40,
+                y: randomPipe.y + 140,
+                width: 30,
+                height: 40,
                 speed: 0.8 + Math.random() * 0.7  // Медленная скорость падения
             });
         }
@@ -332,12 +340,12 @@
             
             pipes.forEach(pipe => {
                 // Тело трубы
-                ctx.fillRect(pipe.x, pipe.y, 80, 120);
-                ctx.strokeRect(pipe.x, pipe.y, 80, 120);
+                ctx.fillRect(pipe.x, pipe.y, 90, 140);
+                ctx.strokeRect(pipe.x, pipe.y, 90, 140);
                 
                 // Основание трубы
-                ctx.fillRect(pipe.x - 10, pipe.y + 120, 100, 25);
-                ctx.strokeRect(pipe.x - 10, pipe.y + 120, 100, 25);
+                ctx.fillRect(pipe.x - 10, pipe.y + 140, 110, 30);
+                ctx.strokeRect(pipe.x - 10, pipe.y + 140, 110, 30);
             });
         }
 
@@ -370,21 +378,21 @@
                 
                 // Кабина
                 ctx.fillStyle = '#1E90FF';
-                ctx.fillRect(tanker.x + tanker.width - 45, tanker.y, 45, tanker.height);
+                ctx.fillRect(tanker.x + tanker.width - 50, tanker.y, 50, tanker.height);
                 
                 // Колёса
                 ctx.fillStyle = '#000000';
                 ctx.beginPath();
-                ctx.arc(tanker.x + 30, tanker.y + tanker.height, 15, 0, Math.PI * 2);
+                ctx.arc(tanker.x + 35, tanker.y + tanker.height, 18, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.beginPath();
-                ctx.arc(tanker.x + tanker.width - 30, tanker.y + tanker.height, 15, 0, Math.PI * 2);
+                ctx.arc(tanker.x + tanker.width - 35, tanker.y + tanker.height, 18, 0, Math.PI * 2);
                 ctx.fill();
                 
                 // Надпись "Нефть"
                 ctx.fillStyle = '#FFFFFF';
-                ctx.font = 'bold 16px Arial';
-                ctx.fillText('НЕФТЬ', tanker.x + 20, tanker.y + 30);
+                ctx.font = 'bold 18px Arial';
+                ctx.fillText('НЕФТЬ', tanker.x + 25, tanker.y + 35);
             }
         }
 
@@ -392,12 +400,12 @@
         function drawRoad() {
             // Рисуем дорогу
             ctx.fillStyle = 'rgba(105, 105, 105, 0.8)';
-            ctx.fillRect(0, canvas.height - 50, canvas.width, 50);
+            ctx.fillRect(0, canvas.height - 60, canvas.width, 60);
             
             // Разметка дороги
             ctx.fillStyle = '#FFFFFF';
-            for (let i = 0; i < canvas.width; i += 60) {
-                ctx.fillRect(i, canvas.height - 25, 30, 5);
+            for (let i = 0; i < canvas.width; i += 70) {
+                ctx.fillRect(i, canvas.height - 30, 35, 6);
             }
         }
 
@@ -471,7 +479,7 @@
             collected = 0;
             lives = 3;
             oilDrops = [];
-            tanker.x = canvas.width / 2 - 75;
+            tanker.x = canvas.width / 2 - 85;
             
             tankFill.style.height = '0%';
             updateHearts();

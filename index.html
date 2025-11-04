@@ -112,7 +112,7 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
         }
         
-        #start-screen, #instructions-screen, #win-screen, #game-over {
+        #start-screen, #win-screen, #game-over {
             position: absolute;
             top: 0;
             left: 0;
@@ -127,7 +127,7 @@
             z-index: 20;
         }
         
-        #instructions-screen, #win-screen, #game-over {
+        #win-screen, #game-over {
             display: none;
         }
         
@@ -138,13 +138,6 @@
             color: #FFD700;
         }
         
-        h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            color: #FFA500;
-        }
-        
         p {
             font-size: 24px;
             margin-bottom: 20px;
@@ -152,19 +145,12 @@
             max-width: 80%;
         }
         
-        .instruction-text {
-            font-size: 28px;
-            margin-bottom: 15px;
-            text-align: center;
-            max-width: 90%;
-        }
-        
         .controls {
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 20px 0;
-            gap: 20px;
+            gap: 40px;
         }
         
         .key {
@@ -185,6 +171,24 @@
         .key-label {
             font-size: 20px;
             color: #FFD700;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .hold-keys-info {
+            font-size: 26px;
+            color: #FFA500;
+            font-weight: bold;
+            margin: 20px 0;
+            text-align: center;
+            max-width: 80%;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
         }
         
         .oil-spill {
@@ -239,16 +243,6 @@
             top: 120px;
             left: -10px;
         }
-        
-        .hold-keys-info {
-            font-size: 22px;
-            color: #FFA500;
-            font-weight: bold;
-            margin: 15px 0;
-            text-align: center;
-            max-width: 80%;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-        }
     </style>
 </head>
 <body>
@@ -273,30 +267,24 @@
             <div id="start-screen">
                 <h1>Нефтевоз: Сбор нефти</h1>
                 <p>Соберите нефть и наполните резервуар!</p>
-                <div class="hold-keys-info">Удерживайте стрелки ← и → для движения!</div>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <div class="key">←</div>
+                        <div class="key-label">Влево</div>
+                    </div>
+                    <div class="control-group">
+                        <div class="key">→</div>
+                        <div class="key-label">Вправо</div>
+                    </div>
+                </div>
+                
+                <div class="hold-keys-info">Удерживайте стрелки для движения!</div>
+                
                 <p>Избегайте пропусков - за каждую пропущенную каплю вы теряете одну жизнь!</p>
+                <p>У вас есть 3 жизни. Наполните резервуар до победы!</p>
+                
                 <button id="start-button">Начать игру</button>
-            </div>
-            
-            <div id="instructions-screen">
-                <h2>Управление</h2>
-                <p class="instruction-text">Управляйте нефтевозом с помощью стрелок:</p>
-                
-                <div class="controls">
-                    <div class="key">←</div>
-                    <div class="key-label">Влево</div>
-                </div>
-                
-                <div class="controls">
-                    <div class="key">→</div>
-                    <div class="key-label">Вправо</div>
-                </div>
-                
-                <p class="instruction-text">Удерживайте стрелки для плавного движения!</p>
-                <p class="instruction-text">Соберите нефть и наполните резервуар!</p>
-                <p class="instruction-text">Избегайте пропусков - теряйте жизни!</p>
-                
-                <button id="play-button">Начать играть!</button>
             </div>
             
             <div id="win-screen">
@@ -323,11 +311,9 @@
         const heartsContainer = document.getElementById('hearts');
         const tankFill = document.getElementById('tank-fill');
         const startScreen = document.getElementById('start-screen');
-        const instructionsScreen = document.getElementById('instructions-screen');
         const winScreen = document.getElementById('win-screen');
         const gameOverScreen = document.getElementById('game-over');
         const startButton = document.getElementById('start-button');
-        const playButton = document.getElementById('play-button');
         const restartButton = document.getElementById('restart-button');
         const restartButton2 = document.getElementById('restart-button-2');
 
@@ -526,12 +512,6 @@
             }
         }
 
-        // Функция показа инструкций
-        function showInstructions() {
-            startScreen.style.display = 'none';
-            instructionsScreen.style.display = 'flex';
-        }
-
         // Функция начала игры
         function startGame() {
             collected = 0;
@@ -542,7 +522,7 @@
             tankFill.style.height = '0%';
             updateHearts();
             
-            instructionsScreen.style.display = 'none';
+            startScreen.style.display = 'none';
             winScreen.style.display = 'none';
             gameOverScreen.style.display = 'none';
             
@@ -575,8 +555,7 @@
         }
 
         // Обработчики событий
-        startButton.addEventListener('click', showInstructions);
-        playButton.addEventListener('click', startGame);
+        startButton.addEventListener('click', startGame);
         restartButton.addEventListener('click', startGame);
         restartButton2.addEventListener('click', startGame);
 
